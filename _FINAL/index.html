@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CPSC431 Final Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css">
+    <!-- boostrape -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href ="mystyle.css"> -->
+</head>
+
+
+<body>
+
+    <header>
+        <h1>Final Project Jiu Lin Demo 3 </h1>
+        <p>This is a demo page with some boilerplate code.</p>
+        <p>This header is for the whole page</p>
+
+        <!-- adding the new button  -->
+        <button type="button" data-click="jojo" data-message="BALABALALBA I LOVE YOU"> * I am Jo Jo ! ** </button>
+        <button type="button" data-click="getData" data-message="User click to get data form DB"> * GET data from DB ! ** </button>
+        <!-- <button type="button" data-click="getData" data-message="User click to get data form DB" data-name="{{name}}",  data-created="{{created}}"> {{name}} </button> -->
+
+        <h2>To-Do-List</h2>
+        <button type="button" data-click="addList"> Add more things in the list</button>
+    </header>
+
+    <main>
+        <header>
+            <h2>Main Area</h2>
+            <button type="button" data-click="addList" > * AddList ** </button>
+        </header>
+
+
+        <h3>Demo Area</h3>
+        <p>This is dynamic content from a template</p>
+        <div id="DemoArea">
+
+        </div>
+        <hr>
+        <h3>API Area  "My Final Project"</h3>
+        <p>This content comes from the API</p>
+        <p>  
+            <!-- fetch() -->
+            <button type="button" data-click="fetchApiDemo">Fetch!</button>
+        </p>
+        <div id="ApiArea">
+
+        </div>
+        <hr>
+
+        <h3>Dynamic Area</h3>
+        <p>This template was downloaded from another folder.</p>
+
+        <div id="DynamicArea">
+        </div>
+
+
+        <h2>List Data Display Area</h2>  <!-- I add it -->
+        <div id="get_data">
+
+        </div>
+
+
+        <!-- #3 Create a new list name, for POST method   -->
+        <section>
+            <h2>3. Create a Student/ Create a List </h2> 
+
+            <form id="postListForm">
+                <input type="text" name="name" value="LIST NAME" maxlength="255">
+                <button type="button" data-click="postList" data-form="postNameForm"> Create a New List </button> <!--action need to coresponding to function name-->
+            </form>
+
+        </section>
+        <div id="post_list">
+
+        </div>
+    </main>
+
+    
+    <footer>
+        &copy; 2023 Steven Cooper
+    </footer>
+
+
+    <script id="FooBar" type="text/html">
+        <h1>{{title}}</h1>
+        <ul>
+            {{#buttons}}
+            <li>
+                <button data-click="bar" data-message="{{msg}}">{{displayText}}</button>
+            </li>
+            {{/buttons}}
+        </ul>
+    </script>
+
+
+    <script type="text/html" id="ApiTemplate">
+        <h4>Imaginary People: </h4>
+    
+        <ol>
+            {{#.}}
+                <li>
+                     {{name}},     Date: {{created}}
+                </li>
+            {{/.}}
+        </ol>
+    </script>
+
+
+    <!-- Creating by myself  -->
+    <!-- write getDataTemplate to display lists table information  -->
+    <!-- lists will be displayed in TEXT format -->
+    <script type="text/html" id="getDataTemplate">
+            <h4>Major List Q: </h4>
+            <ol>
+                <!-- many objects in an array  -->
+                {{#.}}
+                    <li>
+                        <!-- {{name}}, {{created}}, {{idx}} -->
+                        <button type="button" data-click="downlaodList" data-idx="{{idx}}" id="toggleList">{{name}}</button>
+                        {{idx}}
+                        <button type="button" data-click="deleteList" data-idxHtml="{{idx}}" id="deleteButton"> DELETE </button>
+                        <!-- what is the purpose for this ul ? Just for create another varaible which name is   list_idx  ?   -->
+                        <ul id="list_{{idx}}" class="hidden"> </ul>
+                    </li>
+                {{/.}}
+            </ol> 
+    </script>
+
+    <!-- lists will be displayed in TEXT format -->
+    <!-- <script type="text/html" id="getDataTemplate">
+        <h4>Major List: </h4>
+         <ul>
+            {{#buttons}}
+                <li>
+                     <button> {{name}}, {{created}} </button>
+                </li>
+            {{/buttons}}
+        </ul>
+    </script> -->
+
+
+
+
+    <!-- <script type="text/html" id="getDataButtonTemplate">
+        <h4>Major List with button feature: </h4>
+
+        <button type="button" data-click="getData" data-message="User click to get data form DB" data-name="{{name}}",  data-created="{{created}}"> {{name}}</button>
+        <ol>
+            {{#.}}
+                <li>
+                     <button> {{name}}, {{created}} </button>
+                </li>
+            {{/.}}
+        </ol>
+    </script> -->
+
+
+    <!-- <ul>
+        {{#buttons}}
+        <li>
+            <button data-click="bar" data-message="{{msg}}">{{displayText}}</button>
+        </li>
+        {{/buttons}}
+    </ul> -->
+
+    <form id="AddItemForm">
+        <input type="text" placeholder="Add Item" name="text" maxlength="512">
+        <input type="text" placeholder="Check " name="checked" maxlength="2">
+        <input type="text" placeholder="List Idex" name="list_idx" maxlength="512">
+        <button type="button" data-click="postItem" data-form="AddItemName"> Add Items </button>
+    </form>
+
+
+    <!-- **************************************************************************05/03/23 -->
+        <!-- Modal form to insert new list -->
+        <script type="text/html" id="AddListInterface"> 
+            <div class = "modal" >
+                    <div>
+                        <button type= "button" id="close_button" data-click="closeModal"> &times; </button>
+                        <form id="AddListForm">
+                            <input type="text" placeholder="List Name" name="name">
+                            <button type="submit"> Submit </button>
+                        </form>
+                    </div>
+            </div>
+        </script>
+
+
+            <!-- dynamically creat a from to get user input-->
+
+     <script type="text/html" id="ListSummariesTemplate"> 
+        <div class = "list-container">
+            {{#.}}
+            <div>
+                <button type= "button"  data-click="downloadList" data-idx = "{{idx}}"> {{name}}</button>
+                <ul id="list_{{idx}}" class = "hidden"> </ul>
+            </div>
+            {{/.}}
+        </div>
+    </script> 
+
+    
+
+    <!-- what is the purpose of module  ?  -->
+    <script type="module" src="index.js"></script>
+</body>
+
+</html>

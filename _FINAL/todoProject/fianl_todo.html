@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CPSC431 Final Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<main>
+    <header>
+        <h1>Final Project Jiu Lin Demo</h1>
+        <h2>To-Do-List</h2>
+        <button type="button" data-click="addList"> Add List</button>
+
+        <!-- adding the new button  -->
+        <button type="button" data-click="jojo" data-message="BALABALALBA I LOVE YOU"> * I am Jo Jo ! ** </button>
+        <button type="button" data-click="getData" data-message="User click to get data form DB"> * GET data from DB ! ** </button>
+        <!-- <button type="button" data-click="getData" data-message="User click to get data form DB" data-name="{{name}}",  data-created="{{created}}"> {{name}} </button> -->
+    </header>
+    <hr>
+    <div id = "listSummaries">
+    </div>
+</main>
+
+<footer>
+    &copy; 2023 Jiu Lin, All Rights Reserved. 
+</footer>
+
+
+
+<script type="text/html" id="AddListInterface">
+    <div class = "modal">  
+        <div> 
+            <button type="button" data-click="closeModal"> </button>
+            <form id="AddListForm">
+                <input type="text" placeholder="Add Item" name="text" maxlength="512">
+                <button type="submit"> Submit </button>
+            </form>
+        </div>
+    </div>
+</script>
+
+
+<!-- Creating by myself  -->
+<!-- write getDataTemplate to display lists table information  -->
+<!-- lists will be displayed in TEXT format -->
+<script type="text/html" id="ListSummaeriesTemplate">
+    <div class = "list-container">
+        {{#.}}
+        <div> 
+            <button type="button" data-click="downlaodList" data-idx="{{idx}}" id="toggleList">{{name}}</button>
+            <ul id="list_{{idx}}" class="hidden"> </ul>
+        </div>
+        {{/.}}
+    </div>
+
+    <!-- what is the purpose of module  ?  -->
+    <script type="module" src="j.js"></script>
+</body>
+
+</html>

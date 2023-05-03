@@ -1,0 +1,68 @@
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin-left:10px;
+    font-size: 16px;
+}
+
+main {
+    padding: 10px;
+}
+
+button {
+    cursor: pointer;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.modal {
+
+    position: fixed;
+    top:0; 
+    left:0; 
+    right:0; 
+    bottom:0; 
+    padding:0; 
+    margin:0; 
+    z-index: 100; 
+    background-color: black (0, 0, 0, 0.5);
+}
+
+.modal>div {
+
+    position: relative;
+    margin:100px auto; 
+    padding:20px; 
+    border: 1px solid white;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px black;
+    background-color: rgb(237, 237, 237);
+    min-width: 500px;
+    min-height: 300px;
+    max-width: 800px; 
+}
+
+
+button [data-click='closeModal'] {
+
+        background-color: red;
+        color: white;
+        position: absolute;
+        top: 0;
+        right: 0;
+}
+
+#close_button{
+    background-color: red;
+    color: white;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
